@@ -1,4 +1,4 @@
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Component, VERSION, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
@@ -18,7 +18,7 @@ filmes: Observable<any>;
     ) {}
 
     ngOnInit(){
-this.filmes = this.http.get("https://swapi.dev/api/filmes");
+        this.filmes = this.http.get('https://swapi.dev/api/filmes');
     }
 
 }
