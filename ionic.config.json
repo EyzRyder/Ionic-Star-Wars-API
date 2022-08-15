@@ -1,0 +1,7 @@
+{
+  "name": "star_wars_api",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

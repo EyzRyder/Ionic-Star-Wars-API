@@ -1,0 +1,17 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Blank
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <div id="container">
+    <ion-list>
+      <h4>film star wars</h4>
+      <ion-item button detail lines="inset" *ngFor="let film of (filmes|async)?.results">{{film.title}}</ion-item>
+    </ion-list>
+  </div>
+</ion-content>
