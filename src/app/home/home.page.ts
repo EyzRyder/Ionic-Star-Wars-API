@@ -45,7 +45,7 @@ export class HomePage {
   openDetails(film) {
     let split = film.url.split('/');
     console.log(split);
-    let filmId = split[split.length - 1];
+    let filmId = split[split.length - 2];
     this.router.navigateByUrl(`/filme-detalhe/${filmId}`);
   }
 

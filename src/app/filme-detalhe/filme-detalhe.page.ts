@@ -12,7 +12,9 @@ export class FilmeDetalhePage implements OnInit {
 
   film: any;
 
-  constructor(private activatedRoute: ActivatedRoute, private api: ApiService) { }
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private api: ApiService) { }
 
   ngOnInit() {
     let id = this.activatedRoute.snapshot.paramMap.get('id');
