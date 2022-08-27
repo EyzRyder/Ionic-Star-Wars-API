@@ -22,8 +22,8 @@ export class HomePage {
 
   ngOnInit() {
     console.log('LoginPage - OnInit');
-    this.films = this.http.get('https://swapi.dev/api/films');
-    // this.films = this.api.getFilms();
+    // this.films = this.http.get('https://swapi.dev/api/films');
+    this.films = this.api.getFilms();
   }
 
   ngOnDestroy() {
