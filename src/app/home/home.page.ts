@@ -1,8 +1,10 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, VERSION, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
 import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { retry, catchError } from 'rxjs/operators';
+import { ToastController } from '@ionic/angular';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-home',
@@ -10,15 +12,33 @@ import { Observable } from 'rxjs';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-filmes: Observable<any>;
+  films: Observable<any>;
+
   constructor(
     private router: Router,
-    private http: HttpClient,
-    public toastController: ToastController
-    ) {}
+    private api: ApiService,
+    public toastController: ToastController) { }
 
-    ngOnInit(){
-        this.filmes = this.http.get('https://swapi.dev/api/filmes');
-    }
+  ngOnInit() {
+    this.films = this.api.getFilms();
+  }
 
+  async exibirErro(erro) {
+    const toast = await this.toastController.create({
+      message: `Erro ao consultar a API: ${erro.message}`,
+      duration: 4000,
+      color: 'danger',
+      position: 'middle'
+    });
+    console.log(erro);
+    toast.present();
+    return null;
+  }
+
+  openDetails(film) {
+    let split = film.url.split('/');
+    let filmId = split[split.length - 2];
+    this.router.navigateByUrl(`/filme-detalhe/${filmId}`);
+  }
 }
+
