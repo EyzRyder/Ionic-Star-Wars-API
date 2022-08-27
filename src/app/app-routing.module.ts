@@ -10,8 +10,9 @@ const routes: Routes = [
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
-  },  {
-    path: 'filme-detalhe',
+  },
+  {
+    path: 'filme-detalhe/:id',
     loadChildren: () => import('./filme-detalhe/filme-detalhe.module').then( m => m.FilmeDetalhePageModule)
   },
 

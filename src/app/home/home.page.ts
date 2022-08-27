@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -15,12 +15,19 @@ export class HomePage {
   films: Observable<any>;
 
   constructor(
+    private http: HttpClient,
     private router: Router,
     private api: ApiService,
     public toastController: ToastController) { }
 
   ngOnInit() {
-    this.films = this.api.getFilms();
+    console.log('LoginPage - OnInit');
+    this.films = this.http.get('https://swapi.dev/api/films');
+    // this.films = this.api.getFilms();
+  }
+
+  ngOnDestroy() {
+    console.log('LoginPage - OnDestroy');
   }
 
   async exibirErro(erro) {
@@ -37,8 +44,17 @@ export class HomePage {
 
   openDetails(film) {
     let split = film.url.split('/');
-    let filmId = split[split.length - 2];
+    console.log(split);
+    let filmId = split[split.length - 1];
     this.router.navigateByUrl(`/filme-detalhe/${filmId}`);
+  }
+
+  ionViewWillEnter() {
+    console.log('LoginPage - ViewWillEnter');
+  }
+
+  ionViewWillLeave() {
+    console.log('LoginPage - ViewWillLeave');
   }
 }
 
